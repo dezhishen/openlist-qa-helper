@@ -63,10 +63,18 @@ export function buildAccordionPanel(q, level = 0) {
 
     const header = document.createElement('div');
     header.className = 'accordion-header';
-    header.innerHTML =
+    
+    // 创建标题容器
+    const titleContainer = document.createElement('div');
+    titleContainer.style.cssText = 'display: flex; align-items: center; flex: 1;';
+    titleContainer.innerHTML = 
         q.title +
-        `<span class="${(q.required !== false) ? 'required-badge' : 'optional-badge'}" style="margin-left:16px">${q.required !== false ? '必填' : '可选'}</span><span class="accordion-arrow">▶</span>`;
-
+        `<span class="${(q.required !== false) ? 'required-badge' : 'optional-badge'}" style="margin-left:16px">${q.required !== false ? '必填' : '可选'}</span>`;
+    
+    // 创建箭头容器
+    const arrowContainer = document.createElement('div');
+    arrowContainer.innerHTML = '<span class="accordion-arrow">▶</span>';
+    
     // 概览区（答案实时显示）
     let overviewEl = document.createElement('div');
     overviewEl.className = 'panel-overview';
@@ -77,6 +85,10 @@ export function buildAccordionPanel(q, level = 0) {
     } else {
         overviewEl.textContent = '';
     }
+    
+    // 组装 header
+    header.appendChild(titleContainer);
+    header.appendChild(arrowContainer);
     header.appendChild(overviewEl);
 
     const arrowEl = header.querySelector('.accordion-arrow');
