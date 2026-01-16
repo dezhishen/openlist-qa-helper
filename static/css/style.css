@@ -126,6 +126,7 @@ main {
   border-radius: 4px;
   font-weight: 600;
   vertical-align: middle;
+  line-height: 1.2;
 }
 .optional-badge {
   background: #6c757d;
@@ -135,6 +136,7 @@ main {
   border-radius: 4px;
   font-weight: 600;
   vertical-align: middle;
+  line-height: 1.2;
 }
 .question-desc {
   font-size: 15px;
@@ -279,8 +281,62 @@ footer {
     cursor: pointer;
     transition: background .2s;
 }
-.btn-checkbox-done:hover {
-    background: #4c51bf;
+.tips-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #333;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  cursor: help;
+  transition: background 0.2s;
+  position: relative;
+  vertical-align: middle;
+  line-height: 1.2;
+}
+.tips-icon:hover {
+  background: #555;
+}
+.tips-tooltip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 280px;
+  max-width: 80vw;
+  white-space: pre-wrap;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 4px;
+}
+.tips-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #333;
+}
+
+@media (max-width: 700px) {
+  .tips-tooltip {
+    width: 90vw;
+    max-width: 90vw;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
 
 

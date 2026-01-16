@@ -14,16 +14,50 @@ function renderCheckboxInput(q, wrap) {
     if (!userans) userans = state.userAnswers[q._qid] = { value: null };
     const customLabel = q.customLabel || '其他';
     const showCustom = q.custom === true;
+    const totalOptions = (q.items || []).length + (showCustom ? 1 : 0);
+    const hasSearch = totalOptions > 6;
+
+    // 添加搜索框
+    let searchInput = null;
+    if (hasSearch) {
+        searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = '搜索选项...';
+        searchInput.className = 'input-field';
+        searchInput.style.marginBottom = '10px';
+        searchInput.style.width = '100%';
+        searchInput.oninput = () => filterOptions();
+        wrap.appendChild(searchInput);
+    }
+
+    // 过滤选项函数
+    function filterOptions() {
+        if (!hasSearch) return;
+        const searchTerm = searchInput.value.toLowerCase();
+        const optionItems = wrap.querySelectorAll('.option-item');
+        optionItems.forEach(item => {
+            const text = item.dataset.searchText || '';
+            const shouldShow = text.includes(searchTerm);
+            item.style.display = shouldShow ? 'block' : 'none';
+        });
+    }
 
     // 选项部分
     (q.items || []).forEach((opt, i) => {
         let chkWrap = document.createElement('div');
         chkWrap.style.margin = '10px 0';
         chkWrap.className = 'option-item';
+        chkWrap.dataset.searchText = (opt.title + (opt.desc || '')).toLowerCase();
         let ck = document.createElement('input');
         ck.type = 'checkbox';
         ck.name = 'check-' + q._qid + "-" + i;
         let checked = userans.value && Array.isArray(userans.value) && userans.value.indexOf(i) >= 0;
+        // 如果用户还没有选择且选项设置为默认选中，则选中
+        if (!userans.value && opt.checked === true) {
+            checked = true;
+            if (!userans.value) userans.value = [];
+            userans.value.push(i);
+        }
         ck.checked = checked;
         ck.onclick = (event) => {
             if (!userans.value) userans.value = [];
@@ -47,6 +81,9 @@ function renderCheckboxInput(q, wrap) {
         }
         let subContainer = document.createElement('div');
         subContainer.className = 'accordion-subchild';
+        if (checked && opt.items && opt.items.length > 0) {
+            renderChildPanelArray(opt.items, subContainer, 1);
+        }
         chkWrap.appendChild(subContainer);
         wrap.appendChild(chkWrap);
     });
@@ -56,6 +93,7 @@ function renderCheckboxInput(q, wrap) {
         let cwrap = document.createElement('div');
         cwrap.style.margin = '10px 0';
         cwrap.className = 'option-item';
+        cwrap.dataset.searchText = customLabel.toLowerCase();
         let cbox = document.createElement('input');
         cbox.type = 'checkbox';
         cbox.name = 'check-' + q._qid + '-custom';

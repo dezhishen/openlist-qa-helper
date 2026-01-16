@@ -66,10 +66,29 @@ export function buildAccordionPanel(q, level = 0) {
     
     // 创建标题容器
     const titleContainer = document.createElement('div');
-    titleContainer.style.cssText = 'display: flex; align-items: center; flex: 1;';
-    titleContainer.innerHTML = 
-        q.title +
-        `<span class="${(q.required !== false) ? 'required-badge' : 'optional-badge'}" style="margin-left:16px">${q.required !== false ? '必填' : '可选'}</span>`;
+    titleContainer.style.cssText = 'display: flex; align-items: center; flex: 1; position: relative; line-height: 1.2;';
+    
+    // 标题文本
+    const titleText = document.createElement('span');
+    titleText.innerHTML = `<span class="${(q.required !== false) ? 'required-badge' : 'optional-badge'}" style="margin-right:8px">${q.required !== false ? '必填' : '可选'}</span>` + q.title;
+    titleContainer.appendChild(titleText);
+    
+    // 添加tips icon
+    if (q.tips) {
+        const tipsIcon = document.createElement('span');
+        tipsIcon.className = 'tips-icon';
+        tipsIcon.textContent = '?';
+        
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tips-tooltip';
+        tooltip.innerHTML = q.tips;
+        
+        tipsIcon.appendChild(tooltip);
+        tipsIcon.onmouseenter = () => tooltip.style.display = 'block';
+        tipsIcon.onmouseleave = () => tooltip.style.display = 'none';
+        
+        titleContainer.appendChild(tipsIcon);
+    }
     
     // 创建箭头容器
     const arrowContainer = document.createElement('div');
