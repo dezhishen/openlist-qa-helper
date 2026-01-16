@@ -102,8 +102,9 @@ function renderCheckboxInput(q, wrap) {
         cbox.onclick = (event) => {
             userans.customChecked = cbox.checked;
             if (!cbox.checked) userans.customValue = '';
+            // 直接显示/隐藏输入框
+            cin.style.display = cbox.checked ? 'block' : 'none';
             updateAccordionSubmitBtn();
-            // 不自动折叠
             event.stopPropagation();
         };
         cwrap.onclick = () => cbox.click();
@@ -111,27 +112,30 @@ function renderCheckboxInput(q, wrap) {
         let lbl = document.createElement('span');
         lbl.textContent = " " + customLabel + " ";
         cwrap.appendChild(lbl);
-        if (checked) {
-            let cin = document.createElement('input');
-            cin.type = 'text';
-            cin.className = 'input-field';
-            cin.placeholder = '请输入自定义内容';
-            cin.value = userans.customValue || '';
-            let debounceTimer = null;
-            cin.oninput = () => {
-                userans.customValue = cin.value;
-                if (debounceTimer) clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => {
-                    updateAccordionSubmitBtn();
-                }, 300);
-            };
-            cin.onblur = () => {
-                if (debounceTimer) clearTimeout(debounceTimer);
+
+        // 始终创建输入框，根据选中状态显示/隐藏
+        let cin = document.createElement('input');
+        cin.type = 'text';
+        cin.className = 'input-field';
+        cin.placeholder = '请输入自定义内容';
+        cin.value = userans.customValue || '';
+        cin.style.display = checked ? 'block' : 'none';
+        cin.style.marginTop = '5px';
+        let debounceTimer = null;
+        cin.oninput = () => {
+            userans.customValue = cin.value;
+            if (debounceTimer) clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
                 updateAccordionSubmitBtn();
-            };
-            cin.onclick = (event) => event.stopPropagation();
-            cwrap.appendChild(cin);
-        }
+            }, 300);
+        };
+        cin.onblur = () => {
+            if (debounceTimer) clearTimeout(debounceTimer);
+            updateAccordionSubmitBtn();
+        };
+        cin.onclick = (event) => event.stopPropagation();
+        cwrap.appendChild(cin);
+
         wrap.appendChild(cwrap);
     }
 

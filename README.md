@@ -6,8 +6,10 @@
 
 **主要特性：**
 - 多级树形结构引导式问卷
-- 支持 radio/checkbox 下 `custom: true` 自动添加“其他”输入项
-- radio/input 填写完成自动折叠面板，checkbox 提供“完成本题”按钮手动折叠
+- 支持 radio/checkbox 下 `custom: true` 自动添加“其他”输入项- 支持选项默认选中 (`checked: true`)
+- 选项数量超过6个时自动显示搜索框，方便快速定位
+- 支持 HTML 格式的提示信息 (`tips` 字段)
+- 输入框支持快捷输入按钮 (`quickInputs` 配置)- radio/input 填写完成自动折叠面板，checkbox 提供“完成本题”按钮手动折叠
 - 面板标题下方实时显示选项/填写概览
 - 题型渲染逻辑插件式注册，开闭原则易于扩展
 - 数据/界面完全分离，题库独立存于 `/data/questions.yaml`
@@ -50,8 +52,13 @@
   customLabel: "其他"
   items:
     - title: "苹果"
+      checked: true  # 默认选中
     - title: "香蕉"
     - title: "橘子"
+    - title: "葡萄"
+    - title: "西瓜"
+    - title: "橙子"
+    - title: "草莓"  # 超过6个选项时会自动显示搜索框
 
 - title: "你的职业"
   type: "radio"
@@ -59,6 +66,7 @@
   custom: true
   items:
     - title: "程序员"
+      checked: true  # 默认选中
     - title: "设计师"
 
 - title: "请描述你近期印象最深刻的产品"
@@ -66,6 +74,14 @@
   inputType: "textarea"
   required: false
   placeholder: "不限于APP、网页、工具等"
+  tips: "例如：微信、抖音、ChatGPT等"  # HTML格式的提示信息
+  quickInputs:  # 快捷输入按钮配置
+    - label: "清空"
+      value: ""
+    - label: "微信"
+      value: "微信"
+    - label: "抖音"
+      value: "抖音"
 ```
 
 ---
