@@ -47,9 +47,6 @@ function renderCheckboxInput(q, wrap) {
         }
         let subContainer = document.createElement('div');
         subContainer.className = 'accordion-subchild';
-        if (checked && opt.items && opt.items.length > 0) {
-            renderChildPanelArray(opt.items, subContainer, 1);
-        }
         chkWrap.appendChild(subContainer);
         wrap.appendChild(chkWrap);
     });

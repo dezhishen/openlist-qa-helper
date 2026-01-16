@@ -46,9 +46,6 @@ function renderRadioInput(q, wrap) {
         }
         let subContainer = document.createElement('div');
         subContainer.className = 'accordion-subchild';
-        if (radio.checked && opt.items && opt.items.length > 0) {
-            renderChildPanelArray(opt.items, subContainer, 1);
-        }
         radioWrap.appendChild(subContainer);
         wrap.appendChild(radioWrap);
     });
