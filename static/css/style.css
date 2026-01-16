@@ -5,7 +5,7 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
   background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   min-height: 100vh;
-  padding: 15px;
+  padding: 10px;
 }
 
 .container {
@@ -16,6 +16,7 @@ body {
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
   overflow: hidden;
   position: relative;
+  min-height: calc(100vh - 20px);
 }
 
 header {
@@ -38,8 +39,8 @@ header h1 {
 }
 
 main {
-  padding: 25px;
-  min-height: 400px;
+  padding: 20px;
+  min-height: calc(100vh - 200px);
 }
 
 /* Loading 遮罩 */
@@ -203,7 +204,7 @@ input[type="radio"], input[type="checkbox"] {vertical-align: middle; margin-righ
   padding: 15px;
   border-radius: 4px;
   margin-bottom: 15px;
-  max-height: 90%;
+  max-height: calc(100vh - 250px);
   overflow-y: auto;
 }
 
@@ -255,7 +256,11 @@ footer {
 .btn-next:disabled:hover { background: #ccc; box-shadow: none;}
 
 @media (max-width: 700px) {
-  main, .result-area {padding: 8px;}
+  body { padding: 5px; }
+  .container { min-height: calc(100vh - 10px); }
+  main { padding: 10px; min-height: calc(100vh - 150px); }
+  .result-path { max-height: calc(100vh - 200px); }
+  main, .result-area {padding: 5px;}
   .accordion-header { font-size: 15px; padding: 8px; }
   .accordion-body { padding: 8px 6px 2px 6px;}
   .container {box-shadow: none;}
