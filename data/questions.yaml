@@ -135,10 +135,3 @@
   type: "input"  # 多选
   inputType: "textarea"
   required: false
-  quickInputs:
-    - label: "Docker日志命令"
-      value: "docker exec -it openlist tail -f -n 50 /opt/openlist/data/log/log.log"
-    - label: "可执行文件日志路径"
-      value: "data/log/log.log"
-    - label: "清空"
-      value: ""
