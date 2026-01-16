@@ -5,7 +5,7 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
   background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   min-height: 100vh;
-  padding: 20px;
+  padding: 15px;
 }
 
 .container {
@@ -21,24 +21,24 @@ body {
 header {
   background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   color: white;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
 }
 
 header h1 {
   font-size: 28px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .breadcrumb {
   font-size: 14px;
   opacity: 0.9;
-  margin-top: 10px;
-  min-height: 18px;
+  margin-top: 5px;
+  min-height: 14px;
 }
 
 main {
-  padding: 40px;
+  padding: 25px;
   min-height: 400px;
 }
 
@@ -61,7 +61,7 @@ main {
   width: 48px;
   height: 48px;
   animation: spin 1s linear infinite;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 @keyframes spin { 0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);} }
 .loading-text {
@@ -79,14 +79,14 @@ main {
 .accordion {
   border: 1px solid #e9ecef;
   border-radius: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   background: #f8f9fa;
   box-shadow: 0 2px 6px rgba(102,126,234,0.07);
   transition: box-shadow .2s;
 }
 .accordion-header {
   cursor: pointer;
-  padding: 18px 22px;
+  padding: 12px 18px;
   border-radius: 8px 8px 0 0;
   background: #eceaff;
   font-size: 18px;
@@ -107,15 +107,15 @@ main {
 }
 .accordion-body {
   display: none;
-  padding: 22px 22px 8px 22px;
+  padding: 15px 18px 5px 18px;
   animation: fadeIn .3s;
 }
 .accordion.open .accordion-body { display: block; }
-.accordion-child { margin-left:2px; margin-right:2px; margin-top:8px; margin-bottom:8px; border-left: 3px solid #d4d5f8; }
+.accordion-child { margin-left:2px; margin-right:2px; margin-top:5px; margin-bottom:5px; border-left: 3px solid #d4d5f8; }
 
 /* 题目内容样式 */
 .question-header {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 .required-badge {
   background: #dc3545;
@@ -141,16 +141,16 @@ main {
 }
 
 /* 表单控件 */
-.input-container { margin-top: 15px; }
+.input-container { margin-top: 10px; }
 .input-field, .textarea-field {
   width: 100%;
-  padding: 12px 15px;
+  padding: 8px 12px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
   font-size: 15px;
   font-family: inherit;
   background: #f8f9fa;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   transition: all 0.3s;
 }
 .input-field:focus, .textarea-field:focus {
@@ -163,7 +163,7 @@ main {
 input[type="radio"], input[type="checkbox"] {vertical-align: middle; margin-right: 6px;}
 .option-item {
   cursor: pointer;
-  padding: 8px;
+  padding: 5px;
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
@@ -172,21 +172,21 @@ input[type="radio"], input[type="checkbox"] {vertical-align: middle; margin-righ
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 /* 选项描述 */
-.path-title { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px; }
+.path-title { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 3px; }
 .path-desc { font-size: 14px; color: #666; }
 .path-value {
   font-size: 15px;
   color: #495057;
   background: white;
-  padding: 10px;
+  padding: 6px;
   border-radius: 4px;
-  margin-top: 8px;
+  margin-top: 3px;
   border-left: 3px solid #667eea;
 }
 
 .path-item {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #e9ecef;
 }
 .path-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -195,30 +195,30 @@ input[type="radio"], input[type="checkbox"] {vertical-align: middle; margin-righ
 .result-area h2 {
   font-size: 24px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .result-path {
   background: #f8f9fa;
   border-left: 4px solid #667eea;
-  padding: 20px;
+  padding: 15px;
   border-radius: 4px;
-  margin-bottom: 20px;
-  max-height: 500px;
+  margin-bottom: 15px;
+  max-height: 90%;
   overflow-y: auto;
 }
 
 /* 复制/重新开始按钮 */
 .result-actions {
   display: flex;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 10px;
+  margin-top: 15px;
 }
 .btn-copy, .btn-restart {
   flex: 1;
   background: #667eea;
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 10px 20px;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
@@ -230,18 +230,18 @@ input[type="radio"], input[type="checkbox"] {vertical-align: middle; margin-righ
 .btn-copy.copied { background: #20c997; }
 
 footer {
-  padding: 20px 40px;
+  padding: 15px 25px;
   background: #f8f9fa;
   border-top: 1px solid #e9ecef;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: space-between;
 }
 .btn-back, .btn-next {
   background: #667eea;
   color: white;
   border: none;
-  padding: 12px 30px;
+  padding: 10px 20px;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
@@ -255,9 +255,9 @@ footer {
 .btn-next:disabled:hover { background: #ccc; box-shadow: none;}
 
 @media (max-width: 700px) {
-  main, .result-area {padding: 12px;}
-  .accordion-header { font-size: 15px; padding: 12px; }
-  .accordion-body { padding: 12px 8px 5px 8px;}
+  main, .result-area {padding: 8px;}
+  .accordion-header { font-size: 15px; padding: 8px; }
+  .accordion-body { padding: 8px 6px 2px 6px;}
   .container {box-shadow: none;}
 }
 .result-path::-webkit-scrollbar { width: 8px;}
@@ -265,7 +265,7 @@ footer {
 .result-path::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px;}
 .result-path::-webkit-scrollbar-thumb:hover { background: #5568d3;}
 .btn-checkbox-done {
-    padding: 7px 24px;
+    padding: 5px 18px;
     border-radius: 5px;
     border: none;
     background: #667eea;
