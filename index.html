@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引导式树形问卷</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>openlist提问帮助器</h1>
+            <div id="breadcrumb" class="breadcrumb"></div>
+        </header>
+
+        <!-- Loading 遮罩 -->
+        <div id="loading" class="loading-mask">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">正在载入数据，请稍候...</div>
+        </div>
+
+        <main>
+            <div id="questionArea" class="question-area">
+                <div id="questionsContainer"></div>
+            </div>
+            <div id="resultArea" class="result-area hidden">
+                <h2>您的完整选择路径：</h2>
+                <div id="resultPath" class="result-path"></div>
+                <div class="result-actions">
+                    <button onclick="copyResult()" class="btn-copy">📋 复制结果</button>
+                    <button onclick="restart()" class="btn-restart">🔄 重新开始</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <button onclick="goBack()" id="backBtn" class="btn-back hidden">← 返回上一步</button>
+        </footer>
+    </div>
+    <script src="./static/js/js-yaml.min.js"></script>
+    <script type="module" src="./static/js/app.js"></script>
+</body>
+
+</html>

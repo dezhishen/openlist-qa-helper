@@ -1,0 +1,59 @@
+- title: 部署方式
+  desc: 请选择你部署OpenList的方式
+  type: "radio"  # 单选
+  required: true
+  custom: true
+  items:
+    - title: "Docker"
+    - title: "在release中下载可执行文件"
+    - title: "OpenWrt"
+    - title: "OpenList-Desktop"
+      type: "radio"  # 单选
+      custom: true
+      required: true
+      items:
+        - title: "Windows"
+        - title: "macOS"
+        - title: "Linux"
+        - title: "安卓"
+        - title: "iphone"
+- title: "使用OpenList的方式"
+  desc: "请选择你使用OpenList的方式"
+  type: "radio"  # 单选
+  required: true
+  custom: true
+  items:
+    - title: "网页访问"
+      desc:   "直接使用浏览器访问"
+    - title: "webdav"
+      desc:  "通过WebDAV协议访问"
+    - title: "s3"
+      desc:  "通过S3协议访问"
+- title: "请选择你访问的驱动"
+  desc: "请选择你使用的存储驱动类型"
+  type: "radio"  # 单选
+  required: true
+  custom: true
+  items:
+    - title: "OneDrive"
+      desc:   "微软的云存储服务"
+    - title: "Google Drive"
+      desc:  "谷歌的云存储服务"
+    - title: "Aliyun Drive"
+      desc:  "阿里云的云存储服务"
+- title: "使用的方式"
+  desc: "请选择你使用OpenList的方式"
+  type: "checkbox"  # 多选
+  required: true
+  custom: true
+  items:
+    - title: "下载"
+    - title: "在线播放"
+    - title: "离线下载"
+    - title: "移动"
+    - title: "复制"
+- title: "日志"
+  desc: "请填写程序日志，在安装目录的log/log.log文件中"
+  type: "input"  # 多选
+  inputType: "textarea"
+  required: false
