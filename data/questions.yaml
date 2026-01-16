@@ -107,9 +107,18 @@
     - title: "离线下载"
     - title: "移动"
     - title: "复制"
+    - title: "分享"
+- title: "出现的问题"
+  desc: "请简要描述你遇到的问题"
+  tips: "例如：无法访问、无法登录、上传失败、下载失败、在线播放失败等"
+  type: "input"  # 多选
+  inputType: "textarea"
+  required: true
 - title: "日志"
   desc: "请填写程序日志"
-  tips: 如果你使用docker部署，可以通过命令 <code>docker exec -it openlist tail -f -n 50 /opt/openlist/data/log/log.log</code> 来查看日志内容。
+  tips: |
+    <li>如果你使用docker部署，可以通过命令 <code>docker exec -it openlist tail -f -n 50 /opt/openlist/data/log/log.log</code> 来查看日志内容。</li>
+    <li>如果你使用可执行文件部署，可以通过查看 <code>data/log/log.log</code> 文件来获取日志内容。</li>
   type: "input"  # 多选
   inputType: "textarea"
   required: false
