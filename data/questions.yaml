@@ -31,8 +31,8 @@
       desc:  "通过WebDAV协议访问"
     - title: "s3"
       desc:  "通过S3协议访问"
-- title: "请选择你访问的驱动"
-  desc: "请选择你使用的存储驱动类型"
+- title: "出现错误的驱动"
+  desc: "请选择你遇到问题的存储驱动"
   type: "radio"  # 单选
   required: true
   custom: true
