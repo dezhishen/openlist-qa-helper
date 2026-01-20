@@ -26,7 +26,11 @@ function renderCheckboxInput(q, wrap) {
         searchInput.className = 'input-field';
         searchInput.style.marginBottom = '10px';
         searchInput.style.width = '100%';
-        searchInput.oninput = () => filterOptions();
+        if (userans.searchTerm) searchInput.value = userans.searchTerm;
+        searchInput.oninput = () => {
+            userans.searchTerm = searchInput.value;
+            filterOptions();
+        };
         wrap.appendChild(searchInput);
     }
 
@@ -87,6 +91,8 @@ function renderCheckboxInput(q, wrap) {
         chkWrap.appendChild(subContainer);
         wrap.appendChild(chkWrap);
     });
+
+    if (hasSearch && searchInput) filterOptions();
 
     // custom
     if (showCustom) {

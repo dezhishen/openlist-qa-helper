@@ -27,7 +27,11 @@ function renderRadioInput(q, wrap) {
         searchInput.className = 'input-field';
         searchInput.style.marginBottom = '10px';
         searchInput.style.width = '100%';
-        searchInput.oninput = () => filterOptions();
+        if (userans.searchTerm) searchInput.value = userans.searchTerm;
+        searchInput.oninput = () => {
+            userans.searchTerm = searchInput.value;
+            filterOptions();
+        };
         wrap.appendChild(searchInput);
     }
 
@@ -62,6 +66,8 @@ function renderRadioInput(q, wrap) {
         radio.onclick = (event) => {
             userans.value = { type: 'option', index: i, data: opt };
             userans.customValue = '';
+            const customInput = wrap.querySelector('input[data-custom-input="true"]');
+            if (customInput) customInput.style.display = 'none';
             (q.items || []).forEach((sub, k) => { if (k !== i && sub.items) sub.items.forEach(removeSubAns); });
             updateAccordionSubmitBtn();
             renderAccordionQuestions(state.questionData);
@@ -87,6 +93,8 @@ function renderRadioInput(q, wrap) {
         wrap.appendChild(radioWrap);
     });
 
+    if (hasSearch && searchInput) filterOptions();
+
     // 支持custom
     if (showCustom) {
         let radioWrap = document.createElement('div');
@@ -102,7 +110,7 @@ function renderRadioInput(q, wrap) {
         radio.onclick = (event) => {
             userans.value = { type: 'custom' };
             updateAccordionSubmitBtn();
-            renderAccordionQuestions(state.questionData);
+            input.style.display = 'block';
             event.stopPropagation();
         };
         radioWrap.onclick = () => radio.click();
@@ -110,30 +118,32 @@ function renderRadioInput(q, wrap) {
         let label = document.createElement('span');
         label.textContent = " " + customLabel + " ";
         radioWrap.appendChild(label);
-        if (checked) {
-            let input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'input-field';
-            input.placeholder = '请输入自定义内容';
-            input.value = userans.customValue || '';
+        // 始终创建输入框，根据选中状态显示/隐藏
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'input-field';
+        input.placeholder = '请输入自定义内容';
+        input.value = userans.customValue || '';
+        input.style.display = checked ? 'block' : 'none';
+        input.style.marginTop = '5px';
+        input.dataset.customInput = 'true';
 
-            let debounceTimer = null;
-            input.oninput = () => {
-                userans.customValue = input.value;
-                if (debounceTimer) clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => {
-                    updateAccordionSubmitBtn();
-                }, 300);
-            };
-            input.onblur = () => {
-                if (debounceTimer) clearTimeout(debounceTimer);
+        let debounceTimer = null;
+        input.oninput = () => {
+            userans.customValue = input.value;
+            if (debounceTimer) clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
                 updateAccordionSubmitBtn();
-                renderAccordionQuestions(state.questionData); // 自动收起
-            };
-            input.onclick = (event) => event.stopPropagation();
+            }, 300);
+        };
+        input.onblur = () => {
+            if (debounceTimer) clearTimeout(debounceTimer);
+            updateAccordionSubmitBtn();
+            renderAccordionQuestions(state.questionData); // 自动收起
+        };
+        input.onclick = (event) => event.stopPropagation();
 
-            radioWrap.appendChild(input);
-        }
+        radioWrap.appendChild(input);
         wrap.appendChild(radioWrap);
     }
 }
