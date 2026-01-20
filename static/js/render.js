@@ -59,20 +59,20 @@ export function buildAccordionPanel(q, level = 0) {
     wrap.className = 'accordion' + (level === 0 ? '' : ' accordion-child');
     wrap.id = 'accordion-' + q._qid;
     // 缩进风格
-    wrap.style.marginLeft = `${level * 32}px`; 
+    wrap.style.marginLeft = `${level * 32}px`;
 
     const header = document.createElement('div');
     header.className = 'accordion-header';
-    
+
     // 创建标题容器
     const titleContainer = document.createElement('div');
     titleContainer.style.cssText = 'display: flex; align-items: center; flex: 1; position: relative; line-height: 1.2;';
-    
+
     // 标题文本
     const titleText = document.createElement('span');
     titleText.innerHTML = `<span class="${(q.required !== false) ? 'required-badge' : 'optional-badge'}" style="margin-right:8px">${q.required !== false ? '必填' : '可选'}</span>` + q.title;
     titleContainer.appendChild(titleText);
-    
+
     // 添加tips icon
     if (q.tips) {
         const tipsIcon = document.createElement('span');
@@ -81,7 +81,15 @@ export function buildAccordionPanel(q, level = 0) {
         
         const tooltip = document.createElement('div');
         tooltip.className = 'tips-tooltip';
-        tooltip.innerHTML = q.tips;
+        // 使用纯文本以便复制，避免 HTML 标签干扰
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = q.tips;
+        tooltip.textContent = tempDiv.textContent;
+        
+        // 阻止事件冒泡，避免与 header 点击冲突
+        tooltip.onclick = (e) => e.stopPropagation();
+        tooltip.onmousedown = (e) => e.stopPropagation();
+        tooltip.onmouseup = (e) => e.stopPropagation();
         
         tipsIcon.appendChild(tooltip);
         tipsIcon.onmouseenter = () => tooltip.style.display = 'block';
@@ -89,11 +97,11 @@ export function buildAccordionPanel(q, level = 0) {
         
         titleContainer.appendChild(tipsIcon);
     }
-    
+
     // 创建箭头容器
     const arrowContainer = document.createElement('div');
     arrowContainer.innerHTML = '<span class="accordion-arrow">▶</span>';
-    
+
     // 概览区（答案实时显示）
     let overviewEl = document.createElement('div');
     overviewEl.className = 'panel-overview';
@@ -104,7 +112,7 @@ export function buildAccordionPanel(q, level = 0) {
     } else {
         overviewEl.textContent = '';
     }
-    
+
     // 组装 header
     header.appendChild(titleContainer);
     header.appendChild(arrowContainer);

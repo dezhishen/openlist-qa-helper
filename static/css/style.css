@@ -297,6 +297,7 @@ footer {
   transition: background 0.2s;
   vertical-align: middle;
   line-height: 1.2;
+  position: relative;
 }
 .tips-icon:hover {
   background: #555;
@@ -304,26 +305,26 @@ footer {
 .tips-tooltip {
   display: none;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   background: #333;
   color: white;
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 14px;
-  width: 70%;
+  width: 250px;
   white-space: pre-wrap;
   z-index: 99999;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  user-select: text;
 }
 
 @media (max-width: 700px) {
   .tips-tooltip {
-    width: 90%;
+    width: 200px;
     font-size: 12px;
     padding: 6px 10px;
-    top: 10px;
-    right: 10px;
   }
 }
 
